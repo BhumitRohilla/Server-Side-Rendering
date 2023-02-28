@@ -1,0 +1,51 @@
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .btn{
+        width: 150px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .btn-container{
+        display: flex;
+        gap: 20px;
+    }
+</style>
+<header id = 'header' style="height: 56px; background-color: black; display: flex;color: white;justify-content: space-evenly; align-items: center;">
+    <% if( user != undefined){         %>
+        <h1> Welcome <%= user %> </h1>
+        <div class="btn-container">
+            <button id="btn-logout" onclick="logout()" class="btn">Logout</button>
+            <button id="btn-myAccount" onclick="myaccount()" class="btn">My Account</button>
+        </div>
+    <%}else{    %> 
+        <h1> Welcome </h1>
+        <button id="btn-login"  onclick="login()" class="btn">Login</button>
+    <%} %> 
+ 
+</header>
+
+<script>
+    function logout(){
+        window.location.href='/logout';
+    }
+    function login(){
+        window.location.href='/login';
+    }
+    function myaccount(){
+        window.location.href = '/user';
+    }
+    console.log(window.location.href);
+    let str = window.location.href;
+    str = str.split('/');
+    if(str[str.length-1] == ""){
+        console.log("fasd");
+        str.pop();
+    }
+    console.log(str);
+    if(str[str.length-1] == "user"){
+        document.getElementById('btn-myAccount').style.display='none';
+    }
+</script>
